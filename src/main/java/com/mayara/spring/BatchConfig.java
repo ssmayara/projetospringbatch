@@ -1,4 +1,4 @@
-package com.mayara.spring.configurations;
+package com.mayara.spring;
 
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
