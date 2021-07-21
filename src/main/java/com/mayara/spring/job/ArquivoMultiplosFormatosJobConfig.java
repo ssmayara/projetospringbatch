@@ -11,17 +11,18 @@ import org.springframework.context.annotation.Configuration;
 
 @EnableBatchProcessing
 @Configuration
-public class BatchConfig {
+public class ArquivoMultiplosFormatosJobConfig {
 
   @Autowired
   private JobBuilderFactory jobBuilderFactory;
 
   @Bean
-  public Job imprimeOlaJob(Step imprimeOlaStep) {
+  public Job arquivoMultiplosFormatosJob(Step leituraArquivoMultiplosFormatostep) {
     return jobBuilderFactory
-        .get("imprimeOlaJob")
-        .start(imprimeOlaStep)
+        .get("arquivoLarguraFixaJob")
+        .start(leituraArquivoMultiplosFormatostep)
         .incrementer(new RunIdIncrementer())
         .build();
   }
+
 }
