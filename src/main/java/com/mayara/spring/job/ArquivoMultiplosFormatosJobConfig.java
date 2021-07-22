@@ -19,7 +19,7 @@ public class ArquivoMultiplosFormatosJobConfig {
   @Bean
   public Job arquivoMultiplosFormatosJob(Step leituraArquivoMultiplosFormatostep) {
     return jobBuilderFactory
-        .get("arquivoLarguraFixaJob")
+        .get("arquivoMultiplosFormatosJob")
         .start(leituraArquivoMultiplosFormatostep)
         .incrementer(new RunIdIncrementer())
         .build();
