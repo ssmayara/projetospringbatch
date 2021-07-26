@@ -15,14 +15,16 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class ClienteTransacaoLineMapperConfig {
 
+  @SuppressWarnings({ "rawtypes", "unchecked" })
   @Bean
-  public PatternMatchingCompositeLineMapper lineMapper(){
-    PatternMatchingCompositeLineMapper lineMapper = new PatternMatchingCompositeLineMapper();
+  public PatternMatchingCompositeLineMapper lineMapper() {
+    PatternMatchingCompositeLineMapper lineMapper = new PatternMatchingCompositeLineMapper<>();
     lineMapper.setTokenizers(tokenizers());
     lineMapper.setFieldSetMappers(fieldSetMappers());
     return lineMapper;
   }
 
+  @SuppressWarnings("rawtypes")
   private Map<String, FieldSetMapper> fieldSetMappers() {
     Map<String, FieldSetMapper> fieldSetMappers = new HashMap<>();
     fieldSetMappers.put("0*", fieldSetMapper(Cliente.class));
@@ -30,8 +32,9 @@ public class ClienteTransacaoLineMapperConfig {
     return fieldSetMappers;
   }
 
+  @SuppressWarnings({ "rawtypes", "unchecked" })
   private FieldSetMapper fieldSetMapper(Class classe) {
-    BeanWrapperFieldSetMapper fieldSetMapper = new BeanWrapperFieldSetMapper();
+    BeanWrapperFieldSetMapper fieldSetMapper = new BeanWrapperFieldSetMapper<>();
     fieldSetMapper.setTargetType(classe);
     return fieldSetMapper;
   }
@@ -43,17 +46,17 @@ public class ClienteTransacaoLineMapperConfig {
     return tokenizers;
   }
 
-  private LineTokenizer transacaoLineTokenizer() {
-    DelimitedLineTokenizer transacaoLineTokenizer = new DelimitedLineTokenizer();
-    transacaoLineTokenizer.setNames("id", "descricao", "valor");
-    transacaoLineTokenizer.setIncludedFields(1,2,3);
-    return transacaoLineTokenizer;
-  }
-
   private LineTokenizer clienteLineTokenizer() {
     DelimitedLineTokenizer lineTokenizer = new DelimitedLineTokenizer();
     lineTokenizer.setNames("nome", "sobrenome", "idade", "email");
     lineTokenizer.setIncludedFields(1, 2, 3, 4);
+    return lineTokenizer;
+  }
+
+  private LineTokenizer transacaoLineTokenizer() {
+    DelimitedLineTokenizer lineTokenizer = new DelimitedLineTokenizer();
+    lineTokenizer.setNames("id", "descricao", "valor");
+    lineTokenizer.setIncludedFields(1, 2, 3);
     return lineTokenizer;
   }
 }
