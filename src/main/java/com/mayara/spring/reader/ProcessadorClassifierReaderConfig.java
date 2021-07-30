@@ -10,18 +10,19 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.Resource;
 
 @Configuration
-public class LeituraArquivoMultiplosFormatosReaderConfig {
+public class ProcessadorClassifierReaderConfig {
 
-  @StepScope
+  @SuppressWarnings({"rawtypes", "unchecked"})
   @Bean
-  public FlatFileItemReader arquivoMultiplosFormatosItemReader(
-      @Value("#{jobParameters['arquivoClienteMultiplosFormatos']}") Resource arquivoClienteMultiplosFormatos, LineMapper lineMapper) {
+  @StepScope
+  public FlatFileItemReader processadorClassifierReader(
+      @Value("#{jobParameters['arquivoClientes']}") Resource arquivoClientes,
+      LineMapper lineMapper) {
+    return new FlatFileItemReaderBuilder()
+        .name("processadorClassifierReader")
+        .resource(arquivoClientes)
+        .lineMapper(lineMapper).build();
 
-    return new FlatFileItemReaderBuilder<>()
-        .name("arquivoMultiplosFormatosItemReader")
-        .resource(arquivoClienteMultiplosFormatos)
-        .lineMapper(lineMapper)
-        .build();
   }
 
 }
