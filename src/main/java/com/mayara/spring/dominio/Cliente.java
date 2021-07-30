@@ -1,9 +1,21 @@
 package com.mayara.spring.dominio;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+import org.hibernate.validator.constraints.Range;
+
 public class Cliente {
+
+  @NotNull
+  @Size(min=1, max=100)
+  //@Pattern(regexp="[a-zA-Z\\s]+", message = "Nome deve ser alfabetico")
   private String nome;
-  private String sobrenome;
+  @NotNull
+  @Range(min = 18, max=200)
   private String idade;
+  @NotNull
+  @Size(min=1, max=50)
   private String email;
 
   public String getNome() {
@@ -14,13 +26,6 @@ public class Cliente {
     this.nome = nome;
   }
 
-  public String getSobrenome() {
-    return sobrenome;
-  }
-
-  public void setSobrenome(String sobrenome) {
-    this.sobrenome = sobrenome;
-  }
 
   public String getIdade() {
     return idade;
@@ -42,7 +47,6 @@ public class Cliente {
   public String toString() {
     return "Cliente{" +
         "nome='" + nome + "'" +
-        ", sobrenome ='" + sobrenome + "'" +
         ", idade='" + idade + "'" +
         ", email='" + email + "'" +
         '}';

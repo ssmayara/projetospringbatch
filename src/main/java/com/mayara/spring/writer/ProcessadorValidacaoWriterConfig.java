@@ -6,11 +6,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-public class LeituraArquivoLarguraDelimitadoWriterConfig {
-
+public class ProcessadorValidacaoWriterConfig {
   @Bean
-  public ItemWriter<Cliente> LeituraArquivoLarguraDelimitadoWriter() {
-    return items -> items.forEach(System.out::println);
-
+  public ItemWriter<Cliente> processadorValidacaoWriter() {
+    return clientes -> clientes.forEach(System.out::println);
   }
 }
