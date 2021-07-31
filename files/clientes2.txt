@@ -1,3 +1,0 @@
-Fernando,Silva,32,joao@test.com
-Augusto,Silva,30,maria@test.com
-Inacio,Silva,20,jose@test.com

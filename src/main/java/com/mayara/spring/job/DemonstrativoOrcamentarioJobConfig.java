@@ -9,20 +9,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-@EnableBatchProcessing
 @Configuration
-public class ArquivoMultiplosFormatosJobConfig {
-
-  @Autowired
-  private JobBuilderFactory jobBuilderFactory;
-
-  @Bean
-  public Job arquivoMultiplosFormatosJob(Step leituraArquivoMultiplosFormatostep) {
-    return jobBuilderFactory
-        .get("arquivoLarguraFixaJob")
-        .start(leituraArquivoMultiplosFormatostep)
-        .incrementer(new RunIdIncrementer())
-        .build();
-  }
-
+@EnableBatchProcessing
+public class DemonstrativoOrcamentarioJobConfig {
+	@Autowired
+	public JobBuilderFactory jobBuilderFactory;
+	
+	@Bean
+	public Job demonstrativoOrcamentarioJob(Step demonstrativoOrcamentarioStep) {
+		return jobBuilderFactory
+				.get("demonstrativoOrcamentarioJob")
+				.start(demonstrativoOrcamentarioStep)
+				.incrementer(new RunIdIncrementer())
+				.build();
+	}
 }
